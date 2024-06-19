@@ -1,10 +1,11 @@
-#include "user.hpp"
-#include "deal.hpp"
+// #include "user.hpp"
+// #include "deal.hpp"
 #include <conio.h>
+#include <iostream>
 #include <string>
 #include <map>
 
-std::map<std::string, deal> dealMap;
+// std::map<std::string, deal> dealMap;
 
 void user_choice(int &choice);
 
@@ -14,8 +15,8 @@ int main()
 {
     std::cout << "Welcome to the logistics management system." << std::endl;
     std::cout << "First, Please tell us your information" << std::endl;
-    user sender;
-    sender = sender.create_user();
+    // user sender;
+    // sender = sender.create_user();
     int choice = 0;
     while(1)
     {   
@@ -27,10 +28,10 @@ int main()
             {
                 std::cout << "You chose to create a delivering deal." << std::endl;
                 std::cout << "Please enter the information of the receiver" << std::endl;
-                user receiver;
-                receiver = receiver.create_user();
-                deal myDeal;
-                myDeal.creat_deal(sender, receiver);
+                // user receiver;
+                // receiver = receiver.create_user();
+                // deal myDeal;
+                // myDeal.creat_deal(sender, receiver);
                 break;
             }
         
@@ -42,7 +43,7 @@ int main()
             }
         case 3:
             std::cout << "You chose to list current available deals." << std::endl;
-            sender.view_deal_details();
+            // sender.view_deal_details();
             break;
         case 4:
             std::cout << "You chose to view information about the app." << std::endl;
@@ -79,15 +80,15 @@ void find_deal_by_code()
     std::cout << "Enter Deal Code: ";
     std::cin >> code;
 
-    auto it = dealMap.find(code); 
+    // auto it = dealMap.find(code); 
 
-    if (it != dealMap.end())
-    {
-        deal foundDeal = it->second; 
-        foundDeal.deal_display();
-    }
-    else
-    {
-        std::cout << "Deal not found.\n";
-    }
+    // if (it != dealMap.end())
+    // {
+    //     deal foundDeal = it->second; 
+    //     foundDeal.deal_display();
+    // }
+    // else
+    // {
+    //     std::cout << "Deal not found.\n";
+    // }
 }

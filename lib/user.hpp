@@ -14,7 +14,6 @@
 
 #include <string>
 #include <vector>
-#include "deal.hpp"
 
  /**
   * @brief Generate a random code for deal code
@@ -39,6 +38,8 @@ typedef struct {
     int address_number;
 }address;
 
+class deal;
+
 /**
  * @brief Class user, includes of name, phone number, address,
  * number of deal and list of deal
@@ -49,7 +50,7 @@ private:
     std::string phone_number;
     address address_user;
     int number_of_deal;
-    std::vector<deal> available_deal;
+    std::vector<deal*> available_deal;
 public:
     /**constructor user*/
     user(const std::string& name = "", const std::string phone_number = "",
@@ -64,7 +65,7 @@ public:
     /**Get user information */
     void get_user(std::string& name_param, std::string& phone_number_param, address& address_user_param);
     /**Add deal to user after completely crating deal */
-    void add_deal(const deal& newDeal);
+    void add_deal(deal* newDeal);
     /** View each deal details */
     void view_deal_details();
 

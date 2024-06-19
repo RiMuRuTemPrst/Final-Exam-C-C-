@@ -12,7 +12,7 @@
 
 #include <iostream> 
 
-user::user(const std::string& name = "", const std::string phone_number = "", const address& address_user = {})
+user::user(const std::string& name, const std::string phone_number, const address& address_user)
     :name(name), phone_number(phone_number), address_user(address_user), number_of_deal(0) {
 }
 
@@ -40,7 +40,7 @@ void user::get_user(std::string& name_param, std::string& phone_number_param, ad
 }
 
 
-void user::add_deal(const  deal& newDeal) {
+void user::add_deal(deal* newDeal) {
     number_of_deal++;
     available_deal.push_back(newDeal);
 }
@@ -52,10 +52,10 @@ void user::view_deal_details() {
         std::cout << "No deal available." << std::endl;
     }
     else {
-        for (const auto& deal_view : available_deal) {
-            deal_view.deal_display();
-            std::cout << "----------------------" << std::endl;
-        }
+        // for (auto deal_view : available_deal) {
+        //     deal_view->deal_display();
+        //     std::cout << "----------------------" << std::endl;
+        // }
     }
 }
 
@@ -78,6 +78,6 @@ user user::create_user() {
     std::cin >> address_user.street_name;
     std::cout << "Enter address number: ";
     std::cin >> address_user.address_number;
-    user name(name, phone_number, address_user);
-    return name;
+    user username(name, phone_number, address_user);
+    return username;
 }

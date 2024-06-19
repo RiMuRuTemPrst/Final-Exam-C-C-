@@ -1,38 +1,26 @@
 /**
  * @file user.hpp
  * @author your name (you@domain.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2024-06-18
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 #ifndef USER_HPP
 #define USER_HPP
-#include <stdio.h>
-#include <iostream>
-#include <string> 
-#include <ctime>
-#include <cstdlib>
+
+
+#include <string>
 #include <vector>
-#endif
-#ifndef DEAL_HPP
 #include "deal.hpp"
-class deal
-{
 
-};
-#define DEAL_HPP
-
-#endif
-
-
-/**
- * @brief Generate a random code for deal code
- * @param: No param
- * @return std::string 
- */
+ /**
+  * @brief Generate a random code for deal code
+  * @param: No param
+  * @return std::string
+  */
 std::string generate_code();
 
 /**
@@ -43,8 +31,7 @@ std::string generate_code();
  * @member: Street name (string)
  * @member: Address number (int)
  */
-typedef struct 
-{
+typedef struct {
     std::string province;
     std::string city;
     std::string ward;
@@ -53,11 +40,10 @@ typedef struct
 }address;
 
 /**
- * @brief Class user, includes of name, phone number, address, 
+ * @brief Class user, includes of name, phone number, address,
  * number of deal and list of deal
  */
-class user
-{
+class user {
 private:
     std::string name;
     std::string phone_number;
@@ -65,8 +51,8 @@ private:
     int number_of_deal;
     std::vector<deal> available_deal;
 public:
-/**constructor user*/
-    user(const std::string& name = "", const std::string phone_number = "", 
+    /**constructor user*/
+    user(const std::string& name = "", const std::string phone_number = "",
         const address& address_user = {});
     /**destructor */
     ~user();
@@ -78,8 +64,10 @@ public:
     /**Get user information */
     void get_user(std::string& name_param, std::string& phone_number_param, address& address_user_param);
     /**Add deal to user after completely crating deal */
-    void add_deal(  deal& newDeal);
+    void add_deal(const deal& newDeal);
     /** View each deal details */
-    void view_deal_details() ;
+    void view_deal_details();
 
 };
+
+#endif

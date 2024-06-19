@@ -1,32 +1,30 @@
 /**
  * @file deal.cpp
  * @author your name (you@domain.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2024-06-18
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
-#include "user.hpp"
 #include "deal.hpp"
+#include <iostream>
+#include <ctime>
 
-std::string generate_code ()
-{
+std::string generate_code() {
     std::string character = "abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     std::string code;
     int length = 10;
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    for(int i = 0; i < length; ++i)
-    {
+    for (int i = 0; i < length; ++i) {
         int randomIndex = std::rand() % character.length();
         code += character[randomIndex];
     }
     return code;
 }
 
-enum deal_status
-{
+enum deal_status {
     at_sender,      /**Sender has not yet sent the item */
     in_transiting,  /**Is transiting to the warehouse */
     at_warehouse,   /**Arrived at warehouse */
@@ -34,8 +32,7 @@ enum deal_status
     received        /**receiver received the item */
 };
 
-class deal
-{
+class deal {
 private:
     user sender;
     user receiver;
@@ -46,25 +43,23 @@ private:
 public:
 
     /**constructor */
-    deal( user& sender, user&receiver, const std::string& item_name, 
+    deal(user& sender, user& receiver, const std::string& item_name,
         const float& item_weight, const std::string& deal_code, deal_status status);
-        
-    void deal_display() const;
-    
-    void creat_deal();
-    
-};
-deal::deal( user& sender,  user&receiver, const std::string& item_name, 
-        const float& item_weight, const std::string& deal_code, deal_status status)
-        :sender(sender), receiver(receiver),item_name(item_name),
-        item_weight(item_weight),deal_code(deal_code),status(status)
-    {
-        sender.add_deal(*this);
-        receiver.add_deal(*this);
-    }
 
-void deal::deal_display() const
-{
+    void deal_display() const;
+
+    void creat_deal();
+
+};
+deal::deal(user& sender, user& receiver, const std::string& item_name,
+    const float& item_weight, const std::string& deal_code, deal_status status)
+    :sender(sender), receiver(receiver), item_name(item_name),
+    item_weight(item_weight), deal_code(deal_code), status(status) {
+    sender.add_deal(*this);
+    receiver.add_deal(*this);
+}
+
+void deal::deal_display() const {
     std::cout << "Deal Information:" << std::endl;
     std::cout << "Sender:" << std::endl;
     sender.user_display();
@@ -75,8 +70,7 @@ void deal::deal_display() const
     std::cout << "Deal Code: " << deal_code << std::endl;
     std::cout << "Status: ";
 
-    switch (status)
-    {
+    switch (status) {
     case at_sender:
         std::cout << "At Sender" << std::endl;
         break;
@@ -92,14 +86,13 @@ void deal::deal_display() const
     case received:
         std::cout << "Received" << std::endl;
         break;
-        default:
+    default:
         std::cout << "Unknown" << std::endl;
         break;
     }
 }
 
-void deal::creat_deal( user& sender,  user& receiver)
-{   
+void deal::creat_deal(user& sender, user& receiver) {
     /**Item Information */
     float item_weight;
     std::string item_name;
